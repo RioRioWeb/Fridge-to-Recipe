@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+
+  <div id="left" class="half">
+    <h1>Fridge-to-Recipe</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data" class="img-form">
+      <div class="centered">
+        <label for="file-sample" class="select-button">画像を選択</label>
+        <input id="file-sample" type="file" name="image" accept="image/png, image/jpeg" style="display: none;">
+      </div>
+      <div class="centered">
+        <span class="dli-chevron-down"></span>
+      </div>
+      <div class="centered img-display">
+        {% if images %}
+          {% for path in images %}
+              <img src="images/{{ path }}" style="height: 150px;">
+          {% endfor %}
+        {% else %}
+          <img src="./sample.jpg" id="file-preview" style="height: 150px;">
+        {% endif %}
+      </div>
+      <div class="centered">
+        <span class="dli-chevron-down"></span>
+      </div>
+      <div class="centered">
+        <select id="food" name="item">
+            <option value="追加したい食材を選択してください">追加したい食材を選択してください</option>
+            <option value="肉">肉</option>
+            <option value="魚">魚</option>
+            <option value="卵">卵</option>
+        </select>
+      </div>
+      <div class="centered">
+        <span class="dli-chevron-down"></span>
+      </div>
+      <div class="centered">
+        <label for="suggest" class="suggest-button">レシピ提案</label>
+        <button id="suggest" type="submit" style="display: none;"></button>
+      </div>
+    </form>
+  </div>
+
+  <div id="right" class="half {{ 'centered' if not names}}">
+    {% if names %}
+    <div style="margin-bottom: 10px;">
+      <form>
+        <label><input type="radio" name="item" value="item1" class="item-radio" data-index="0">{{names[0]}}</label><br>
+        <label><input type="radio" name="item" value="item2" class="item-radio" data-index="1">{{names[1]}}</label><br>
+        <label><input type="radio" name="item" value="item3" class="item-radio" data-index="2">{{names[2]}}</label><br>
+      </form>
+    </div>
+    {% endif %}
+    <div id="display">
+      {% if names %}
+      <hr id="hr-" style="display: none;">
+      <img id="image-0" style="display: none; width: 200px; margin-top: 10px;">
+      <img id="image-1" style="display: none; width: 200px; margin-top: 10px;">
+      <img id="image-2" style="display: none; width: 200px; margin-top: 10px;">
+      <p id="ingredients-0" style="display: none;">{{ ingredients[0]|safe }}</p>
+      <p id="ingredients-1" style="display: none;">{{ ingredients[1]|safe }}</p>
+      <p id="ingredients-2" style="display: none;">{{ ingredients[2]|safe }}</p>
+      <p id="procedure-0" style="display: none;">{{ procedures[0]|safe }}</p>
+      <p id="procedure-1" style="display: none;">{{ procedures[1]|safe }}</p>
+      <p id="procedure-2" style="display: none;">{{ procedures[2]|safe }}</p>
+      {% else %}
+      <p style="color: gray;">提案されたレシピが表示されます。</p>
+      {% endif %}
+    </div>
+  </div>
+
+</div>
+
+<script>
+document.querySelectorAll('.item-radio').forEach(function(radio) {
+  radio.addEventListener('change', function() {
+    const index = this.getAttribute('data-index');
+    const ingredients = document.querySelectorAll('#display p[id^="ingredients-"]');
+    const procedures = document.querySelectorAll('#display p[id^="procedure-"]');
+    const images = document.querySelectorAll('#display img[id^="image-"]');
+    ingredients.forEach(p => p.style.display = 'none');
+    procedures.forEach(p => p.style.display = 'none');
+    images.forEach(img => img.style.display = 'none');
+    if (this.checked) {
+      document.getElementById('ingredients-' + index).style.display = 'block';
+      document.getElementById('procedure-' + index).style.display = 'block';
+      document.getElementById('image-' + index).style.display = 'block';
+      document.getElementById('hr-').style.display = 'block';
+    }
+  });
+});
+
+</script>
+
+{% endblock %}

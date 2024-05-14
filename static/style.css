@@ -1,0 +1,121 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: 'Noto Serif JP', sans-serif;
+}
+
+body {
+  /* background-image: url('background_image.jpg'); */
+  background-color:  #ffaf47;
+  background-size: cover; /* 画像が画面全体に拡大/縮小して表示されるように設定 */
+  background-position: center; /* 画像が画面の中心に位置するように設定 */
+  background-repeat: no-repeat; /* 画像が繰り返されないように設定 */
+  background-attachment: fixed; /* 画像がスクロールに対して固定されるように設定 */
+}
+
+h1 {
+  font-family: 'Anton', sans-serif;
+  color: white;
+  font-size: 45px;
+  margin: 0;
+  margin-bottom: 30px;
+}
+
+.header {
+  width: 100%; 
+  height: 15%; 
+  background-color: #8B4513; 
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  /* height: 85%; */
+  height: 100%;
+}
+
+.half {
+  flex: 1; /* 利用可能なスペースを均等に分割 */
+  width: 50%;
+  box-sizing: border-box; /* パディングとボーダーを幅に含める */
+  margin: 20px;
+}
+
+#right {
+  /* border: 2px solid gray; */
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #2F2F2F;
+  color: white;
+}
+
+.img-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.select-button{
+  padding: 10px 20px;
+  /* background-color: #233D2A;
+  color: white; */
+  background-color: white;
+  color: #2F2F2F;
+  border: 2px solid gray;
+  border-radius: 5px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.img-display{
+  height: 200px;
+  /* border: 2px solid gray; */
+  border-radius: 10px;
+  margin-left: 90px;
+  margin-right: 90px;
+  background-color: white;
+}
+
+.suggest-button {
+  padding: 10px 20px;
+  /* background-color: #233D2A;
+  color: white; */
+  background-color: white;
+  color: #2F2F2F;
+  border: 2px solid gray;
+  border-radius: 5px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dli-chevron-down {
+  display: inline-block;
+  vertical-align: middle;
+  color: #2F2F2F;
+  line-height: 1;
+  width: 1em;
+  height: 1em;
+  border: 0.1em solid currentColor;
+  border-left: 0;
+  border-bottom: 0;
+  box-sizing: border-box;
+  transform: translateY(-25%) rotate(135deg);
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+hr {
+  height: 0;
+  margin: 0;
+  margin-bottom: 5px;
+  padding: 0;
+  border: 0;
+  border-bottom: 2px solid white;
+}
